@@ -13,7 +13,7 @@ const fs=require('fs');
 const app=express();
 const mongourl=process.env.MONGOURL;
 
-
+const PORT= process.env.PORT ||4000;
 app.use('/uploads',express.static(__dirname+'/uploads'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -124,7 +124,7 @@ app.post('/register', async (req, res) => {
   }
 });
 
-const server = app.listen(4000);
+const server = app.listen(PORT);
 
 const wss = new ws.WebSocketServer({server});
 wss.on('connection', (connection, req) => {
